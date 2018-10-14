@@ -1,0 +1,20 @@
+***********************RESOLVER PROBLEMA DO CORS *******************
+
+1° -> insira o codigo dentro da funcao handle do app/http/middleware/cors.php
+ 	
+ public function handle($request, Closure $next)
+    {
+        return $next($request)->header('Access-Control-Allow-Origin', '*')
+        ->header('Access-Control-Allow-Methods','GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS')
+        ->header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    }
+
+2° -> dentro do app\http\kernel insira a seguinte linha dentro do $middleware
+
+	protected $middleware = [
+    	...
+    	...
+	...
+	\App\Http\Middleware\Cors::class,
+	
+	];	
